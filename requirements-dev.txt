@@ -1,0 +1,10 @@
+pytest>=6.2.5            # For running unit tests
+pytest-cov>=2.12.1       # For measuring test coverage
+flake8>=3.9.2            # For linting the code
+black>=21.9b0            # For code formatting
+mypy>=0.910              # For static type checking
+isort>=5.9.3             # For sorting imports
+pre-commit>=2.14.0       # For managing pre-commit hooks
+twine>=3.4.2             # For uploading packages to PyPI
+Sphinx>=4.2.0            # For generating documentation
+sphinx-rtd-theme>=1.0.0  # For the Read the Docs theme in Sphinx
