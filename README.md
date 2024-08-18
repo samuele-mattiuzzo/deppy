@@ -31,17 +31,22 @@ Install Deppy using pip:
 pip install deppy
 ```
 
-
 ## Usage
 
 - Analyze dependencies in a requirements.txt file
 
-`deppy analyze -r requirements.txt`
+```bash
+deppy analyze -r requirements.txt
+```
 
 - Generate a report in HTML format
 
-`deppy report -o report.html`
+```bash
+deppy report -o report.html
+```
 
 - Check for insecure dependencies
 
-`deppy security-check -r requirements.txt`
+```bash
+deppy security-check -r requirements.txt
+```
