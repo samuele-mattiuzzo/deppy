@@ -1,5 +1,13 @@
 # Deppy: Dependency Analyzer for Python
 
+![GitHub License](https://img.shields.io/github/license/samuele-mattiuzzo/deppy)
+
+![GitHub Tag](https://img.shields.io/github/v/tag/samuele-mattiuzzo/deppy)
+
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/samuele-mattiuzzo/deppy/run_tests.yml)
+
+
+
 Deppy is a powerful tool designed to help Python developers manage and optimize the dependencies in their projects. It provides insights into outdated, insecure, or unnecessary packages and offers recommendations for upgrades or replacements. Deppy also ensures compatibility, license compliance, and overall dependency health.
 
 ## Key Features
