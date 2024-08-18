@@ -4,8 +4,7 @@
 
 ![GitHub Tag](https://img.shields.io/github/v/tag/samuele-mattiuzzo/deppy)
 
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/samuele-mattiuzzo/deppy/run_tests.yml)
-
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fsamuele-mattiuzzo%2Fdeppy%2Fbadge%3Fref%3Dmain&style=flat-square)](https://actions-badge.atrox.dev/samuele-mattiuzzo/deppy/goto?ref=main)
 
 
 Deppy is a powerful tool designed to help Python developers manage and optimize the dependencies in their projects. It provides insights into outdated, insecure, or unnecessary packages and offers recommendations for upgrades or replacements. Deppy also ensures compatibility, license compliance, and overall dependency health.
