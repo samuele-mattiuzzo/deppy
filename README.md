@@ -35,20 +35,14 @@ pip install deppy
 
 ## Usage
 
-- Analyze dependencies in a requirements.txt file
+Please refer to the [usage document](/docs/USAGE.md) for instructions on how to use the tool
 
-```bash
-deppy analyze -r requirements.txt
-```
+## Contributing
 
-- Generate a report in HTML format
+We welcome contributions! Please read our [contributing guidelines](/docs/CONTRIBUTING.md) before making a pull request
 
-```bash
-deppy report -o report.html
-```
+## Other links
 
-- Check for insecure dependencies
+- [Development roadmap](/docs/ROADMAP.md)
 
-```bash
-deppy security-check -r requirements.txt
-```
+- [Known issues](/docs/ISSUES.md)
