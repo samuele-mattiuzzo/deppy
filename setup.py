@@ -23,7 +23,10 @@ setup(
     python_requires='>=3.6',
     install_requires=[
         # Add the required dependencies here
-        # e.g., 'requests', 'packaging', 'pydantic'
+        'click',
+        'requests',
+        'packaging',
+        'pydantic'
     ],
     entry_points={
         "console_scripts": [
