@@ -1,37 +1,47 @@
-# DEPPY
+# Deppy: Dependency Analyzer for Python
 
-## Overview
-
-The Python Dependency Analyzer is be a tool that helps developers manage and optimize the dependencies of their Python projects.
-The tool focuses on identifying outdated, insecure, or unnecessary packages and provide recommendations for upgrades or replacements.
-It offers insights into dependency trees, compatibility issues, and license compliance.
+Deppy is a powerful tool designed to help Python developers manage and optimize the dependencies in their projects. It provides insights into outdated, insecure, or unnecessary packages and offers recommendations for upgrades or replacements. Deppy also ensures compatibility, license compliance, and overall dependency health.
 
 ## Key Features
 
-*Dependency Analysis:*
+- **Dependency Analysis**
+  - Parse `requirements.txt`, `Pipfile`, and `poetry.lock` files.
+  - Visualize dependency trees and identify outdated packages.
+  - Cross-reference with known vulnerability databases for insecure packages.
 
-- Parse requirements.txt, Pipfile, or poetry.lock to list all dependencies and their versions.
-- Visualize the dependency tree, showing relationships between packages and their sub-dependencies.
-- Detect and highlight outdated dependencies with available updates.
-- Identify insecure packages by cross-referencing known vulnerability databases (like the Python Package Advisory Database).
+- **Compatibility Checks**
+  - Verify compatibility between Python versions and dependencies.
+  - Detect conflicts that could lead to runtime errors.
 
-*Compatibility Checks:*
+- **License Compliance**
+  - Analyze licenses and ensure compatibility with your project’s licensing policies.
+  - Highlight packages with restrictive or incompatible licenses.
 
-- Ensure compatibility between the Python version and dependencies.
-- Detect conflicting dependencies that could cause runtime errors or failures during installation.
+- **Upgrade Recommendations**
+  - Suggest safe upgrades and alternative packages.
+  
+- **Report Generation**
+  - Generate detailed reports in JSON, HTML, and PDF formats.
 
-*License Compliance:*
+## Installation
 
-- Analyze the licenses of all dependencies and ensure compliance with the project's licensing policy.
-- Highlight any packages with restrictive or incompatible licenses.
+Install Deppy using pip:
+
+```bash
+pip install deppy
+```
 
 
-*Upgrade Recommendations:*
+## Usage
 
-- Suggest safe upgrades for dependencies with minimal risk of breaking changes.
-- Optionally, recommend alternatives to packages that are no longer maintained.
+- Analyze dependencies in a requirements.txt file
 
-*Report Generation:*
+`deppy analyze -r requirements.txt`
 
-- Generate detailed reports of the dependency analysis, including security risks, outdated packages, and license compliance issues.
-- Provide actionable insights to improve dependency health.
+- Generate a report in HTML format
+
+`deppy report -o report.html`
+
+- Check for insecure dependencies
+
+`deppy security-check -r requirements.txt`
