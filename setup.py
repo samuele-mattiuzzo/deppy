@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="deppy",
-    version="0.1.0",
+    version="0.0.1",
     author="Samuele Mattiuzzo",
     author_email="samumatt@gmail.com",
     description="A comprehensive tool for analyzing and managing Python dependencies, ensuring security, compatibility, and license compliance.",
@@ -17,7 +17,7 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: Software Development :: Build Tools",
         "Intended Audience :: Developers",
-        "Development Status :: 3 - Alpha",
+        "Development Status ::  1 - Planning",
         "Environment :: Console",
     ],
     python_requires='>=3.6',
