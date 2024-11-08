@@ -5,7 +5,10 @@ setup(
     version="0.0.1",
     author="Samuele Mattiuzzo",
     author_email="samumatt@gmail.com",
-    description="A comprehensive tool for analyzing and managing Python dependencies, ensuring security, compatibility, and license compliance.",
+    description="""
+    A comprehensive tool for analyzing and managing Python dependencies,
+    ensuring security, compatibility, and license compliance.
+    """,
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     url="https://github.com/samuele-mattiuzzo/deppy",

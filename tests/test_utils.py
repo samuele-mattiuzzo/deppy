@@ -2,13 +2,14 @@ import unittest
 from unittest.mock import mock_open, patch
 from deppy.utils import read_requirements_file, parse_requirements
 
+
 class TestUtils(unittest.TestCase):
 
     @patch("builtins.open", new_callable=mock_open, read_data="pkg_one==1.2.3\npkg_one[with_extras]==1.2.3\n")
     def test_read_requirements_file(self, mock_file):
         # Call the function
         result = read_requirements_file("requirements.txt")
-        
+
         # Check the results
         self.assertEqual(result, ["pkg_one==1.2.3\n", "pkg_one[with_extras]==1.2.3\n"])
 
@@ -24,10 +25,10 @@ class TestUtils(unittest.TestCase):
             "pkg_two>=1.2.3",
             "pkg_two[with_extras]>=1.2.3"  
         ]
-        
+
         # Call the function
         result = parse_requirements(raw_lines)
-        
+
         # Define the expected result
         expected = [
             {'name': 'pkg_one', 'version': '1.2.3', 'extras': None},
@@ -45,7 +46,7 @@ class TestUtils(unittest.TestCase):
             "pkg_one==1.2.3",
             "invalid-package-line",
         ]
-        
+
         # Capture output to ensure the warning is printed
         with patch('sys.stdout') as mock_stdout:
             result = parse_requirements(raw_lines)
@@ -56,6 +57,7 @@ class TestUtils(unittest.TestCase):
             {'name': 'pkg_one', 'version': '1.2.3', 'extras': None},
         ]
         self.assertEqual(result, expected)
+
 
 if __name__ == '__main__':
     unittest.main()
