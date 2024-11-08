@@ -1,49 +1,89 @@
-import unittest
-from unittest.mock import patch, mock_open
+# tests/test_analyzer.py
+
+import os
+import pytest
+from unittest import mock
 from deppy.analyzer import analyze_dependencies
 
 
-class TestAnalyzer(unittest.TestCase):
+class TestAnalyzer:
+    @pytest.fixture
+    def sample_requirements_file(self, tmp_path):
+        """Creates a sample requirements.txt file for testing."""
+        content = """
+        requests==2.26.0
+        flask[async]==2.0.1
+        pytest>=6.2.5
+        black
+        """
+        file_path = tmp_path / "requirements.txt"
+        file_path.write_text(content)
+        return str(file_path)
 
-    @patch("deppy.analyzer.os.path.exists")
-    @patch("deppy.analyzer.read_requirements_file")
-    @patch("deppy.analyzer.parse_requirements")
-    def test_analyze_dependencies_success(self, mock_parse, mock_read, mock_exists):
-        # Mock the file exists check to return True
-        mock_exists.return_value = True
+    @pytest.fixture
+    def sample_pipfile(self, tmp_path):
+        """Creates a sample Pipfile for testing."""
+        content = """
+        [packages]
+        requests = "==2.26.0"
+        flask = {version = "==2.0.1", extras = ["async"]}
 
-        # Mock the reading and parsing functions
-        mock_read.return_value = ["pkg==1.2.3", "pkg[extras]==1.2.3"]
-        mock_parse.return_value = [
-            {'name': 'pkg', 'version': '1.2.3', 'extras': None},
-            {'name': 'pkg', 'version': '1.2.3', 'extras': ['extras']}
+        [dev-packages]
+        pytest = ">=6.2.5"
+        black = "*"
+        """
+        file_path = tmp_path / "Pipfile"
+        file_path.write_text(content)
+        return str(file_path)
+
+    @pytest.fixture
+    def sample_pyproject_toml(self, tmp_path):
+        """Creates a sample pyproject.toml file for testing."""
+        content = """
+        [project]
+        dependencies = [
+            "requests==2.26.0",
+            "flask[async]==2.0.1",
+            "pytest>=6.2.5",
+            "black"
         ]
+        optional-dependencies = {
+            test = ["pytest", "mock"]
+        }
+        """
+        file_path = tmp_path / "pyproject.toml"
+        file_path.write_text(content)
+        return str(file_path)
 
-        # Call the function
-        result = analyze_dependencies("requirements.txt")
+    def test_analyze_dependencies_requirements(self, tmp_path, sample_requirements_file):
+        """Test analyzing dependencies from requirements.txt."""
+        dependencies = analyze_dependencies(tmp_path)
+        expected_dependencies = [
+            {'name': 'requests', 'version': '2.26.0', 'extras': None},
+            {'name': 'flask', 'version': '2.0.1', 'extras': ['async']},
+            {'name': 'pytest', 'version': None, 'extras': None},
+            {'name': 'black', 'version': None, 'extras': None},
+        ]
+        assert dependencies == expected_dependencies
 
-        # Check the results
-        self.assertEqual(len(result), 2)
-        self.assertEqual(result[0]['name'], 'pkg')
-        self.assertEqual(result[1]['extras'], ['extras'])
+    def test_analyze_dependencies_pipfile(self, tmp_path, sample_pipfile):
+        """Test analyzing dependencies from Pipfile."""
+        dependencies = analyze_dependencies(tmp_path)
+        expected_dependencies = [
+            {'name': 'requests', 'version': '2.26.0', 'extras': None},
+            {'name': 'flask', 'version': '2.0.1', 'extras': ['async']},
+            {'name': 'pytest', 'version': None, 'extras': None},
+            {'name': 'black', 'version': None, 'extras': None},
+        ]
+        assert dependencies == expected_dependencies
 
-        # Ensure mocks were called
-        mock_exists.assert_called_once_with("requirements.txt")
-        mock_read.assert_called_once_with("requirements.txt")
-        mock_parse.assert_called_once_with(["pkg==1.2.3", "pkg[extras]==1.2.3"])
-
-    @patch("deppy.analyzer.os.path.exists")
-    def test_analyze_dependencies_file_not_found(self, mock_exists):
-        # Mock the file exists check to return False
-        mock_exists.return_value = False
-
-        # Expect FileNotFoundError to be raised
-        with self.assertRaises(FileNotFoundError):
-            analyze_dependencies("requirements.txt")
-
-        # Ensure the mock was called
-        mock_exists.assert_called_once_with("requirements.txt")
-
-
-if __name__ == '__main__':
-    unittest.main()
+    def test_analyze_dependencies_pyproject_toml(self, tmp_path, sample_pyproject_toml):
+        """Test analyzing dependencies from pyproject.toml."""
+        dependencies = analyze_dependencies(tmp_path)
+        expected_dependencies = [
+            {'name': 'requests', 'version': '2.26.0', 'extras': None},
+            {'name': 'flask', 'version': '2.0.1', 'extras': ['async']},
+            {'name': 'pytest', 'version': None, 'extras': None},
+            {'name': 'black', 'version': None, 'extras': None},
+        ]
+        assert dependencies == expected_dependencies
