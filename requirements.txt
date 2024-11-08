@@ -2,4 +2,5 @@ click>=8.0.3             # For creating the CLI
 requests>=2.26.0         # For making HTTP requests (e.g., for security checks)
 packaging>=21.0          # For parsing and handling version numbers
 pydantic>=1.8.2          # For data validation and settings management
+toml==0.10.2     # For reading pyproject.toml files
 #Jinja2>=3.0.1            # For generating HTML reports
